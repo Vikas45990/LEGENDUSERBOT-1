@@ -6,12 +6,12 @@ from datetime import datetime
 
 from telethon import events
 from telethon.tl import functions, types
-from userbot import CMD_HELP
-from userbot import ALIVE_NAME, LEGENDversion
-from LEGENDBOT.utils import admin_cmd, edit_or_reply
+
+from LEGENDBOT.utils import admin_cmd
+from userbot import ALIVE_NAME
 from userbot.cmdhelp import CmdHelp
 
-DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "??g?§Ú?"
+DEFAULTUSER = str(ALIVE_NAME) if ALIVE_NAME else "â„“Ñ”gÑ”Ğ¸âˆ‚"
 
 LEGEND = bot.uid
 
@@ -44,23 +44,24 @@ async def set_not_afk(event):
     if ".afk" not in current_message and "yes" in USER_AFK:  # pylint:disable=E0602
         LEGENDBOT = await borg.send_message(
             event.chat_id,
-            "?¦É ¦Á§Ş ?¦Á?¦Ê ¦Á?¦É¦Í? !\n**§Ú? ?¦Ï§Úg?§ñ ??¦Ê.**\n?? `?¦Ás ¦Á?k f¦Ï§ñ:``"
-            + total_afk_time
-            + "`", file=LEGENDpic
+            "âšœMy Pro Master bÎ±Ï²Îº Î±â„“Î¹Î½e !\nâ±ï¸`wÎ±s Î±Æ’k fÎ¿Ñ:``" + total_afk_time + "`",
+            file=LEGENDpic,
         )
         try:
             await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
-                "#AFKFALSE \nSet AFK mode to False\nReply to pic and use .afk reason"
-                + "?¦É ¦Á§Ş ?¦Á?¦Ê ¦Á?¦É¦Í?\n**?? ?????? ???.**\n?? `?¦Ás ¦Á?k for:``"
-                + total_afk_time
+                Config.LOGGER_ID,  # pylint:disable=E0602
+                "#AFKFALSE \nSet AFK mode to False"
+                + "âšœMy Pro Master bÎ±Ï²Îº Î±â„“Î¹Î½e !\nâ±ï¸`wÎ±s Î±Æ’k fÎ¿Ñ:``"
+                + total_afk_time,
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             await borg.send_message(  # pylint:disable=E0602
                 event.chat_id,
-                "Please set `PRIVATE_GROUP_BOT_API_ID` "
+                "Please set `LOGGER_ID` "
                 + "for the proper functioning of afk functionality "
-                + "Ask in @Legend_Userbot to get help setting this value\n\n `{}`".format(str(e)),
+                + "Ask in @Legend_Userbot to get help setting this value\n\n `{}`".format(
+                    str(e)
+                ),
                 reply_to=event.message.id,
                 silent=True,
             )
@@ -94,12 +95,12 @@ async def on_afk(event):
         return False
     if USER_AFK and not (await event.get_sender()).bot:
         msg = None
-        
+
         message_to_reply = (
-            f"???[{DEFAULTUSER}](tg://user?id={LEGEND})? ¦É? C???ently unavailable\n\n???????? ???? : `{total_afk_time}`\n"
-            + f"?????????? : `{reason}`"
-  if reason
-           else f"??? ?¦É§ñ / ?¦É???!\n? ¦Á§Ş ?¦Ô§ñ§ñ?§Ú¦Ó?¦Ã ¦Ô§Ú¦Á¦Í¦Á¦É?¦Á????. ¦É §ñ?¦Ñ?¦Ã ¦Ô ¦Á?¦Ó?§ñ ?¦Ï§Ş? ?¦Á?¦Ê¦Ï§Ú?¦É§Ú?.\n__Since when, you ask? From__ `{total_afk_time}`\nI'll be back when I feel to come??"
+            f"[{DEFAULTUSER}](tg://user?id={LEGEND}) iÑ• Currently Unavailable\n\nâ€¢â™¦ï¸â€¢áğšŠğšœğš ğš‚ğšğšğš— : `{total_afk_time}`\n"
+            + f"â€¢ğŸ—’â€¢á¡ğšğšŠğšœğš˜ğš— : `{reason}`"
+            if reason
+            else f"á»á¬á½ ÕÎ¹Ñ / á·Î¹Ñ•Ñ•ğŸ¤”!\ná† Î±Ğ¼ Ï²Ï…ÑÑÑ”Ğ¸Ï„â„“Î³ Ï…Ğ¸Î±Î½Î±Î¹â„“Î±Ïâ„“Ñ”ğŸ˜›. Î¹ ÑÑ”Ïâ„“Î³ Ï… Î±Æ’Ï„Ñ”Ñ Ï²Î¿Ğ¼Ñ” ÏÎ±Ï²ÎºÎ¿Ğ¸â„“Î¹Ğ¸Ñ”.\n__Since when, you ask? From__ `{total_afk_time}`\nI'll be back when I feel to comeğŸš¶ğŸ˜›"
         )
         msg = await event.reply(message_to_reply, file=LEGENDpic)
         await asyncio.sleep(2)
@@ -137,21 +138,30 @@ async def _(event):
         USER_AFK = f"yes: {reason} {LEGENDpic}"  # pylint:disable=E0602
         if reason:
             await borg.send_message(
-                event.chat_id, f"??'? ????? ???? \n???????:- `{reason}`", file=LEGENDpic
+                event.chat_id,
+                f"ğ™¸'ğ™¼ ğ™¶ğš˜ğš’ğš—ğš OfflineğŸš¶ \nâ€¢ğŸ—’â€¢ğšğšğšŠğšœğš˜ğš—:- `{reason}`",
+                file=LEGENDpic,
             )
         else:
-            await borg.send_message(event.chat_id, f"¦É'§Ş g¦Ï¦É§Úg ¦Á?¦Ê !?", file=LEGENDpic)
+            await borg.send_message(event.chat_id, f"Î¹'Ğ¼ gÎ¿Î¹Ğ¸g Î±Æ’Îº !ğŸš¶", file=LEGENDpic)
         await asyncio.sleep(0.001)
         await event.delete()
         try:
             await borg.send_message(  # pylint:disable=E0602
-                Config.PRIVATE_GROUP_BOT_API_ID,  # pylint:disable=E0602
-                f"#AFKTRUE \nSet AFK mode to True, and Reason is {reason}",file=LEGENDpic
+                Config.LOGGER_ID,  # pylint:disable=E0602
+                f"#AFKTRUE \nSet AFK mode to True, and Reason is {reason}",
+                file=LEGENDpic,
             )
         except Exception as e:  # pylint:disable=C0103,W0703
             logger.warn(str(e))  # pylint:disable=E0602
 
 
 CmdHelp("afk").add_command(
-  'afk', '<reply to media>/<or type a reson>', 'Marks you AFK(Away from Keyboard) with reason(if given) also shows afk time. Media also supported.'
+    "afk",
+    "<reply to media>/<or type a reson>",
+    "Marks you AFK(Away from Keyboard) with reason(if given) also shows afk time. Media also supported.",
+).add_info("When U Go Offline Use this Command").add_warning(
+    "Harmless Moduleâœ…"
+).add_type(
+    "Official"
 ).add()
